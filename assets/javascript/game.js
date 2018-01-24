@@ -31,19 +31,23 @@ function play() {
     document.getElementById("wins").innerHTML = wins;
     document.getElementById("guessed").innerHTML = guessArray;
 }
-
-var today = myFunction(){
-    console.log("You pushed it");
-    play(input);
-}
+var input;
+// myfunction(){
+//     play(input);
+// }
+(function () {play})();
+// var today = function myFunction(){
+//     console.log("You pushed it");
+//     // play(input);
+//     }
      // when a key is pressed
-    document.addEventListener("keyup", myFunction);
+    document.addEventListener("keyup", input);
 
     // on the next key entered, run the block of code
     document.onkeyup = function(input) {
     // capture the user key press (input.key) and assign it to a variable
-    var userInput = (input.key).toLowerCase();
-
+    var userInput = prompt("Please Pick a Letter:").toLowerCase();
+    
     // run through game logic based on key press
     if (input.key) {
         // if user's letter is not in the chosen word array, guesses--
@@ -68,7 +72,7 @@ var today = myFunction(){
 
         if (guesses === 0) {
         alert("Game Over!")
-        init();
+        play();
         }
     }
 
@@ -87,7 +91,7 @@ var today = myFunction(){
             alert("YES! You guessed the word " + randomWord + " !!!");
             wins++;
 
-            init();
+            play();
         }
             
     // change the HTML text to reflect the newly guessed letter
