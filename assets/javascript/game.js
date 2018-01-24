@@ -5,41 +5,29 @@ var takeout = ["chinese", "sushi", "mexican", "pizza", "burgers", "subs", "bbq",
 var randomAnswer = takeout[Math.floor(Math.random() * takeout.length)];
 var answer = randomAnswer.split("");
 var clueSize = randomAnswer.length;
-var gueseses = 6;
+var guesseses = 6;
 var wins = 0;
-var answerArray = [];
+var answersArray = [];
 var guessArray = [];
 var badArray = [];
 
-//Creates a function to reload the game
-function play() {
-    var randomAnswer = takeout[Math.floor(Math.random() * takeout.length)];
-    var answer = randomAnswer.split("");
-    var clueSize = randomAnswer.length;
-    var answerArray = [];
-    var guessArray = [];
-    var badArray = [];
-    var gueseses = 6;
+document.addEventListener("keyup", input);
+
+console.log("cluesize:", clueSize);
+console.log("answer:", answer);
 
     //creates a guess field
     for(i=0; i < clueSize; i++){
-        answersArray[i] = "_";
+        answersArray[i] += " _ ";
     }
     // display fresh HTML text (because old text will still display if not)
-    document.getElementById("userText").innerHTML = answersArray.join(' ');
-    document.getElementById("guesses").innerHTML = guesses;
+    document.getElementById("userText").innerText = answersArray;
+    document.getElementById("guesses").innerHTML = guesseses;
     document.getElementById("wins").innerHTML = wins;
     document.getElementById("guessed").innerHTML = guessArray;
-}
+
 var input;
-// myfunction(){
-//     play(input);
-// }
-(function () {play})();
-// var today = function myFunction(){
-//     console.log("You pushed it");
-//     // play(input);
-//     }
+
      // when a key is pressed
     document.addEventListener("keyup", input);
 
@@ -52,7 +40,7 @@ var input;
     if (input.key) {
         // if user's letter is not in the chosen word array, guesses--
         if (((word.includes(userInput)) == false) & ((badArray.includes(userInput)) == false))  {
-            guesses--;
+            guesseses--;
             badArray.push(userInput);
 
         }
@@ -70,11 +58,27 @@ var input;
              }
         }
 
-        if (guesses === 0) {
-        alert("Game Over!")
-        play();
+        if (guesses === 1){
+            document.getElementById("man").innerHTML ='<img src="./assets/images/man1.jpg"/>';}
+        else if (guesses === 2) {
+            document.getElementById("man").innerHTML = '<img src="./assets/images/man2.jpg"/>';}
+        else if (guesses === 3) {
+            document.getElementById("man").innerHTML = '<img src="./assets/images/man3.jpg"/>';}
+        else if (guesses === 4) {
+             document.getElementById("man").innerHTML = '<img src="./assets/images/man4.jpg"/>';}
+        else if (guesses === 5) {
+            document.getElementById("man").innerHTML = '<img src="./assets/images/man5.jpg"/>';}
+        else{
+            document.getElementById("man").innerHTML = '<img src="./assets/images/man6.jpg"/>';
         }
-    }
+
+        }
+
+        if (guesseses === 0) {
+            alert("Game Over!")
+            play();
+        }
+    
 
     // Setup a variable to go through the answers array and find how many letters are left 
     // to be guessed.
@@ -87,14 +91,25 @@ var input;
 
     // If all letters guessed, display the alert
     if (remaining_letters == 0) {
-            document.getElementById("userText").innerHTML = answersArray.join(" ");
-            alert("YES! You guessed the word " + randomWord + " !!!");
+            // document.getElementById("userText").innerHTML = answersArray.join("_");
+            alert("YES! You guessed the word " + randomAnswer + " !!!");
             wins++;
 
             play();
         }
             
     // change the HTML text to reflect the newly guessed letter
-    document.getElementById("userText").innerHTML = answersArray.join(' ');
+    document.getElementById("userText").innerHTML = answersArray;
     // Display guesses left in HTML after every uns
-            document.getElementById("guesses").innerHTML = guesses;
+    document.getElementById("guesses").innerHTML = guessesess;
+
+// Creates a function to reload the game
+    function play() {  
+        var randomAnswer = takeout[Math.floor(Math.random() * takeout.length)];
+        var answer = randomAnswer.split("");
+        var clueSize = randomAnswer.length;
+        var answerArray = [];
+        var guessArray = [];
+        var badArray = [];
+        var guesseses = 6;
+    }
